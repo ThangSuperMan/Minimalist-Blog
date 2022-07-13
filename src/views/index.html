@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>Cute Blog</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <meta name="author" content="Phan Tan Thang" />
+    <meta name="keywords" content="Blogs, Blog, knowledge" />
+    <meta name="viewport" content="width=device-width, inital-scale=1.0" />
+</head>
+
+<body>
+    <main class="container">
+        <h2 class="container__title">Blogs</h2>
+        <p class="content">content</p>
+        <p>Somthing: {{.SOMETHING}}</p>
+        <div class="content-list">
+            <div class="content-list__item">
+                {{range .Blogs}}
+                <p>{{ .Id }}</p>
+                <p>{{ .Title }}</p>
+                <p>{{ .Content }}</p>
+                {{end}}
+                <!-- <span>My name is {{.}}</span> -->
+                <!-- <span>My age is {{.}}</span> -->
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
