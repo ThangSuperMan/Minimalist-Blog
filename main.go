@@ -49,6 +49,7 @@ func handleAddBlog(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/", http.StatusFound)
 }
+
 func addBlogPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("addBlogPage get")
 	t, err := template.ParseFiles("./src/views/add_blog.html")
@@ -65,6 +66,7 @@ func addBlogPage(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	db, err := sql.Open("sqlite3", "test.db")
+	router := mux.NewRouter()
 
 	if err != nil {
 		log.Fatal("Error here", err)
@@ -87,14 +89,14 @@ func main() {
 
 	fmt.Println("Result: ", result)
 
-	// Serve static file
-
-	router := mux.NewRouter()
-	fileServer := http.FileServer(http.Dir("./static/"))
-	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fileServer))
+	dir := http.Dir("./static")
+	fs := http.FileServer(dir)
+	router.PathPrefix("/resources/").Handler(http.StripPrefix("/resources/", fs))
 
 	router.HandleFunc("/", routers.HandleHomeRouter).Methods("GET")
+	router.HandleFunc("/detail_page/{id}", routers.HandleDetailRouter).Methods("GET")
 	router.HandleFunc("/add_blog", addBlogPage).Methods("GET")
 	router.HandleFunc("/add_blog", handleAddBlog).Methods("POST")
 	http.ListenAndServe(":3000", router)
+
 }

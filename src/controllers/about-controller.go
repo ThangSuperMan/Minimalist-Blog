@@ -8,13 +8,8 @@ import (
 	"reflect"
 )
 
-type shipData struct {
-	Blogs []models.Blog
-}
-
-func RenderHomePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("render homepage")
-	// t, err := template.ParseFiles("./src/views/index.html")
+func RenderAboutPage(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("render about")
 
 	templ, err := template.ParseGlob("./src/views/*.html")
 
@@ -36,5 +31,5 @@ func RenderHomePage(w http.ResponseWriter, r *http.Request) {
 		Blogs: models.ReadAllBlogs(),
 	}
 
-	templ.ExecuteTemplate(w, "index.html", ship)
+	templ.ExecuteTemplate(w, "about.html", ship)
 }
