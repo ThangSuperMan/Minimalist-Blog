@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-	"reflect"
 )
 
 type shipData struct {
@@ -14,7 +13,6 @@ type shipData struct {
 
 func RenderHomePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("render homepage")
-	// t, err := template.ParseFiles("./src/views/index.html")
 
 	templ, err := template.ParseGlob("./src/views/*.html")
 
@@ -29,8 +27,6 @@ func RenderHomePage(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Something wrong!")
 		w.WriteHeader(http.StatusInternalServerError)
 	}
-
-	fmt.Println("Prefect", reflect.TypeOf(models.ReadAllBlogs()))
 
 	ship := shipData{
 		Blogs: models.ReadAllBlogs(),

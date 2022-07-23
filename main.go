@@ -1,14 +1,15 @@
 package main
 
 import (
+	"Blog/src/models"
 	"Blog/src/routers"
 	"database/sql"
 	"fmt"
-	"github.com/gorilla/mux"
-	_ "github.com/mattn/go-sqlite3"
-	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type Blog struct {
@@ -20,56 +21,13 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "<p>homepage</p>")
 }
 
-func handleAddBlog(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
-	blog := Blog{}
-	if err != nil {
-		fmt.Println("Error", err)
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	blog.Title = r.Form.Get("title")
-	blog.Content = r.Form.Get("content")
-	fmt.Printf("title %v, content %v", blog.Title, blog.Content)
-
-	// Save data
-	db, err := sql.Open("sqlite3", "test.db")
-
-	if err != nil {
-		log.Fatal("\nError here: ", err)
-	}
-	var query string = "INSERT INTO blogs (title, content) VALUES (?, ?)"
-
-	stmt, _ := db.Prepare(query)
-	result, _ := stmt.Exec(blog.Title, blog.Content)
-	fmt.Println("Result", result)
-
-	defer db.Close()
-
-	http.Redirect(w, r, "/", http.StatusFound)
-}
-
-func addBlogPage(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("addBlogPage get")
-	t, err := template.ParseFiles("./src/views/add_blog.html")
-	if err != nil {
-		// log.Fatal("Error here: ")
-		fmt.Println("Error here: ", err)
-		w.WriteHeader(http.StatusInternalServerError)
-		fmt.Println("hello")
-		return
-	}
-
-	t.Execute(w, nil)
-}
-
 func main() {
 	db, err := sql.Open("sqlite3", "test.db")
 	router := mux.NewRouter()
 
 	if err != nil {
 		log.Fatal("Error here", err)
+		fmt.Println("hello")
 	}
 
 	defer db.Close()
@@ -94,9 +52,10 @@ func main() {
 	router.PathPrefix("/resources/").Handler(http.StripPrefix("/resources/", fs))
 
 	router.HandleFunc("/", routers.HandleHomeRouter).Methods("GET")
-	router.HandleFunc("/detail_page/{id}", routers.HandleDetailRouter).Methods("GET")
-	router.HandleFunc("/add_blog", addBlogPage).Methods("GET")
-	router.HandleFunc("/add_blog", handleAddBlog).Methods("POST")
-	http.ListenAndServe(":3000", router)
+	router.HandleFunc("/detail_blog/{id}", routers.HandleDetaiBloglRouter).Methods("GET")
+	router.HandleFunc("/add_blog", routers.HandleAddBlogRouter).Methods("GET")
+	router.HandleFunc("/add_blog", models.HandleAddBlog).Methods("POST")
+	router.HandleFunc("/login", routers.HandleLoginRouter).Methods("GET")
 
+	http.ListenAndServe(":3000", router)
 }

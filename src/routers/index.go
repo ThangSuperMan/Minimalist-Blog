@@ -11,7 +11,7 @@ func HandleHomeRouter(w http.ResponseWriter, r *http.Request) {
 	controllers.RenderHomePage(w, r)
 }
 
-func HandleDetailRouter(w http.ResponseWriter, r *http.Request) {
+func HandleDetaiBloglRouter(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("router HandleDetailPage")
 	controllers.RenderDetailPage(w, r)
 }
@@ -19,4 +19,14 @@ func HandleDetailRouter(w http.ResponseWriter, r *http.Request) {
 func HandleAboutRouter(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("router HandleDetailPage")
 	controllers.RenderAboutPage(w, r)
+}
+
+func HandleAddBlogRouter(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("add blog page router")
+	controllers.RenderAddBlogPage(w, r)
+}
+
+func HandleLoginRouter(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Login router")
+	controllers.RenderLoginPage(w, r)
 }

@@ -3,9 +3,26 @@
 
 <head>
 	<title>Detail page</title>
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="/resources/css/styles.css" />
+	<link rel="stylesheet" href="/resources/css/detail_blog.css" />
 </head>
-<main>
-	<h1>Detail page blog</h1>
-</main>
+
+<body>
+	<main>
+		{{template "header"}}
+		<h1 class="title">Detail page blog</h1>
+		<div class="blog">
+			<img src="https://cdn.nextlint.com/user/59e8095b-0d60-4e2a-bf24-83566d10d5c0/J8QXrwOO9.webp"
+				alt="Blog image" />
+			<h1 class="blog__title">
+				{{ .Title }}
+			</h1>
+			<p class="blog__content">{{ .Content }}</p>
+		</div>
+		{{template "footer"}}
+	</main>
+</body>
 
 </html>

@@ -1,0 +1,65 @@
+:root { --primary-color: #007d66;
+  --gray-color: #e6e6e6;
+  --tilte-color: #242c3a;
+  --content-color: #64646d;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;	
+}
+
+.wrapper__add-blog {
+	margin-block: 140px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.form {
+	display: block;
+	background-color: #fff;
+	background-color: #eee;
+	border-radius: 8px;
+	width: 340px;
+	padding: 20px;
+	/* transform: translateY(-25%); */
+}
+
+/* .form__textfield { */
+/* 	background-color: paleturquoise; */
+/* } */
+
+.form__textfield label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 20px;
+}
+
+.form__textfield input {
+	padding: 8px 16px;
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid var(--gray-color);
+}
+
+.form__textfield:not(:nth-child(2)) {
+	margin-bottom: 8px;
+}
+
+.center {
+	/* background-color: lightblue; */
+	text-align: center;
+}
+
+.form__button {
+	margin-top: 20px;
+	background-color: var(--primary-color);
+	color: #fff;
+	font-size: 20px;
+	margin-inline: auto;;
+	padding: 12px 24px;
+	border-radius: 30px;
+	border: none;
+}

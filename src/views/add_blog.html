@@ -1,23 +1,35 @@
+<!DOCTYPE html>
+
 <html>
 
 <head>
-    <title>Minimalist Blog</title>
+	<title>Minimalist Blog</title>
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="/resources/css/add_blog.css" />
+	<link rel="stylesheet" href="/resources/css/styles.css" />
 </head>
 
 <body>
-    <main class="container">
-        <form class="form" action="/add_blog" method="post">
-            <div class="form__textfield">
-                <span>Title:</span>
-                <input type="text" name="title" required>
-            </div>
-            <div class="form__textfield">
-                <span>Content:</span>
-                <input type="text" name="content" required>
-            </div>
-            <button type="submit">submit</button>
-        </form>
-    </main>
+	<div class="container">
+		{{template "header"}}
+		<div class="wrapper__add-blog">
+			<form class="form" action="/add_blog" method="post">
+				<div class="form__textfield">
+					<label for="title">Title:</label>
+					<input type="text" name="title" id="title" required>
+				</div>
+				<div class="form__textfield">
+					<label for="content">Content:</label>
+					<input type="text" name="content" id="content" required>
+				</div>
+				<div class="center">
+					<button class="form__button" type="submit">Submit</button>
+				</div>
+		</div>
+		{{template "footer"}}
+	</div>
+	</div>
 </body>
 
 </html>

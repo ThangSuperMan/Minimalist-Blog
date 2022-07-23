@@ -6,6 +6,7 @@
 
 	<!-- Styles -->
 	<link rel="stylesheet" href="/resources/css/styles.css" />
+	<link rel="stylesheet" href="/resources/css/login.css" />
 
 	<!-- Font -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -19,30 +20,11 @@
 </head>
 
 <body>
-	<main class="container">
+	<main>
 		{{template "header"}}
-		<section class="content">
-			<div class="wrapper">
-				<h2 class="content__lastest">
-					Bài viết mới
-				</h2>
-				<div class="content-blogs">
-					{{range .Blogs }}
-					<a href="/detail_blog/{{ .Id }}" class="content-blogs__item">
-						<img src="https://cdn.nextlint.com/user/59e8095b-0d60-4e2a-bf24-83566d10d5c0/J8QXrwOO9.webp">
-						<div>
-							<input type="hidden" value="{{ .Id }}" />
-							<h3>{{ .Title }}</h3>
-							<p>{{ .Content }}</p>
-						</div>
-					</a>
-					{{end}}
-				</div>
-			</div>
-		</section>
+		<h1>Trang dang nhap</h1>
 		{{template "footer"}}
 	</main>
-	<script src="/resources/js/main.js"></script>
 </body>
 
 </html>
