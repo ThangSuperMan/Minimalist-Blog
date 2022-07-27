@@ -1,3 +1,36 @@
-.title {
-	padding: 4px;	
+.blog-container {
+				padding: 32px;
 }
+
+.blog-container .title {
+				padding-top: 4px;
+				padding-bottom: 20px;
+				text-align: center;
+}
+
+.blog {
+				background-color: #eee;
+				border: 2px solid var(--primary-color);
+				border-radius: 14px;
+				padding: 12px;
+}
+
+.blog__img {
+				background-color: red;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 12px;
+}
+
+.blog__img img {
+				display: block;
+				width: 100%;
+}
+
+.blog__title {
+				margin-bottom: 8px;
+}
+
+
+

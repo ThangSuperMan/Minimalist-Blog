@@ -1,6 +1,7 @@
 package models
 
 import (
+	"Blog/src/structs"
 	"database/sql"
 	"fmt"
 	_ "github.com/mattn/go-sqlite3"
@@ -10,7 +11,7 @@ import (
 
 func HandleAddBlog(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
-	blog := Blog{}
+	blog := structs.Blog{}
 	if err != nil {
 		fmt.Println("Error", err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -19,7 +20,6 @@ func HandleAddBlog(w http.ResponseWriter, r *http.Request) {
 
 	blog.Title = r.Form.Get("title")
 	blog.Content = r.Form.Get("content")
-	fmt.Printf("title %v, content %v", blog.Title, blog.Content)
 
 	db, err := sql.Open("sqlite3", "test.db")
 

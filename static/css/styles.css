@@ -160,7 +160,7 @@ body {
     border-radius: 4px; 
     padding: 16px;
     border: 1px solid var(--gray-color);
-	text-decoration: none;
+	  text-decoration: none;
 }
 
 .content-blogs__item h3 {
@@ -182,7 +182,7 @@ body {
 }
 
 .footer {
-	background-color: lightblue;
+	background-color: #eee;
 	text-align: center;
 	padding-block: 8px;
 }

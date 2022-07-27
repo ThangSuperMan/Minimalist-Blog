@@ -2,18 +2,17 @@ package controllers
 
 import (
 	"Blog/src/models"
+	"Blog/src/structs"
 	"fmt"
 	"html/template"
 	"net/http"
 )
 
 type shipData struct {
-	Blogs []models.Blog
+	Blogs []structs.Blog
 }
 
 func RenderHomePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("render homepage")
-
 	templ, err := template.ParseGlob("./src/views/*.html")
 
 	if err != nil {
@@ -22,15 +21,15 @@ func RenderHomePage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if models.ReadAllBlogs() != nil {
-		fmt.Println("blogs: ", models.ReadAllBlogs())
+		ship := shipData{
+			Blogs: models.ReadAllBlogs(),
+		}
+
+		templ.ExecuteTemplate(w, "index.html", ship)
 	} else {
 		fmt.Println("Something wrong!")
 		w.WriteHeader(http.StatusInternalServerError)
+		templ.ExecuteTemplate(w, "index.html", nil)
 	}
 
-	ship := shipData{
-		Blogs: models.ReadAllBlogs(),
-	}
-
-	templ.ExecuteTemplate(w, "index.html", ship)
 }

@@ -12,14 +12,18 @@
 <body>
 	<main>
 		{{template "header"}}
-		<h1 class="title">Detail page blog</h1>
-		<div class="blog">
-			<img src="https://cdn.nextlint.com/user/59e8095b-0d60-4e2a-bf24-83566d10d5c0/J8QXrwOO9.webp"
-				alt="Blog image" />
-			<h1 class="blog__title">
-				{{ .Title }}
-			</h1>
-			<p class="blog__content">{{ .Content }}</p>
+		<div class="blog-container">
+			<h1 class="title">Bài viết chi tiết</h1>
+			<div class="blog">
+				<div class="blog__img">
+					<img src="https://cdn.nextlint.com/user/59e8095b-0d60-4e2a-bf24-83566d10d5c0/J8QXrwOO9.webp"
+						alt="Blog image" />
+				</div>
+				<h1 class="blog__title">
+					{{ .Title }}
+				</h1>
+				<p class="blog__content">{{ .Content }}</p>
+			</div>
 		</div>
 		{{template "footer"}}
 	</main>

@@ -4,10 +4,25 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	// "strconv"
 )
+
+type AnnouceStateSignup struct {
+	isSignupSuccessfully bool
+}
 
 func RenderLoginPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("RenderLoginPage")
+	// sucessfullyJustSignup := r.URL.Query().Get("sucessfully")
+	// isAnnouce, _ := strconv.ParseBool(sucessfullyJustSignup)
+
+	// if isAnnouce {
+	// 	fmt.Println("Let's annouce")
+	// }
+
+	// annouceStateSignup := AnnouceStateSignup{
+	// 	isSignupSuccessfully: isAnnouce,
+	// }
 
 	templ, err := template.ParseGlob("./src/views/*.html")
 

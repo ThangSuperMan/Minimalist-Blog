@@ -7,7 +7,6 @@ import (
 )
 
 func HandleHomeRouter(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("HandleHomeRouter")
 	controllers.RenderHomePage(w, r)
 }
 
@@ -24,6 +23,11 @@ func HandleAboutRouter(w http.ResponseWriter, r *http.Request) {
 func HandleAddBlogRouter(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("add blog page router")
 	controllers.RenderAddBlogPage(w, r)
+}
+
+func HandleSignUpRouter(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Login router")
+	controllers.RenderSignupPage(w, r)
 }
 
 func HandleLoginRouter(w http.ResponseWriter, r *http.Request) {

@@ -1,20 +1,19 @@
 package models
 
 import (
+	"Blog/src/structs"
 	"database/sql"
 	"fmt"
 	_ "github.com/mattn/go-sqlite3"
 )
 
-type Blog struct {
-	Id      int
-	Title   string
-	Content string
-}
+// type Blog struct {
+// 	Id      int
+// 	Title   string
+// 	Content string
+// }
 
-func ReadAllBlogs() []Blog {
-	fmt.Println("ReadAllBlogs")
-
+func ReadAllBlogs() []structs.Blog {
 	var id int
 	var title string
 	var content string
@@ -32,12 +31,12 @@ func ReadAllBlogs() []Blog {
 
 	rows, err := db.Query(statement)
 
-	blogs := make([]Blog, 0)
+	blogs := make([]structs.Blog, 0)
 
 	for rows.Next() {
 		rows.Scan(&id, &title, &content)
 
-		blog := Blog{
+		blog := structs.Blog{
 			Id:      id,
 			Title:   title,
 			Content: content,

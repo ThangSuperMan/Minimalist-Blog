@@ -1,4 +1,5 @@
-:root { --primary-color: #007d66;
+:root { 
+  --primary-color: #007d66;
   --gray-color: #e6e6e6;
   --tilte-color: #242c3a;
   --content-color: #64646d;
@@ -24,12 +25,7 @@
 	border-radius: 8px;
 	width: 340px;
 	padding: 20px;
-	/* transform: translateY(-25%); */
 }
-
-/* .form__textfield { */
-/* 	background-color: paleturquoise; */
-/* } */
 
 .form__textfield label {
 	display: block;
@@ -49,7 +45,6 @@
 }
 
 .center {
-	/* background-color: lightblue; */
 	text-align: center;
 }
 
@@ -62,4 +57,9 @@
 	padding: 12px 24px;
 	border-radius: 30px;
 	border: none;
+}
+
+.form__sub-title {
+	margin-top: 12px;
+	padding: 4px 8px;
 }
