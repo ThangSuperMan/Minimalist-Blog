@@ -6,8 +6,6 @@ import (
 	"github.com/gorilla/mux"
 	"html/template"
 	"net/http"
-	// "reflect"
-	// "strconv"
 )
 
 func RenderDetailPage(w http.ResponseWriter, r *http.Request) {

@@ -6,15 +6,22 @@ import (
 	"Blog/src/routers"
 	"database/sql"
 	"fmt"
-	"github.com/gorilla/mux"
-	_ "github.com/mattn/go-sqlite3"
 	"log"
 	"net/http"
+	"time"
+
+	"github.com/gorilla/mux"
+	_ "github.com/mattn/go-sqlite3"
 )
 
-func main() {
+func initDatabase() {
+	fmt.Println("initDatabase")
+	// fmt.Println("Current date: ", time.Now())
+	currentTime := time.Now()
+
+	fmt.Println(currentTime)
+
 	db, err := sql.Open("sqlite3", "test.db")
-	router := mux.NewRouter()
 
 	if err != nil {
 		log.Fatal("Error here: ", err)
@@ -22,35 +29,35 @@ func main() {
 
 	defer db.Close()
 
-	// var statement string = `drop table user`
-
-	// var statement string = `
-	// CREATE TABLE IF NOT EXISTS "blogs" (
-	// "id"	INTEGER NOT NULL,
-	// "title"	TEXT NOT NULL,
-	// "content"	INTEGER NOT NULL,
-	// PRIMARY KEY("id")
-	// );`
+	// var statement string = `drop table user;`
 
 	var statement string = `
 		CREATE TABLE IF NOT EXISTS  "user" (
 		"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		"username"	TEXT NOT NULL,
-		"password"	TEXT NOT NULL
-	);`
+		"password"	TEXT NOT NULL,
+		"createAt"  TEXT NOT NULL,
+		"updateAt"	TEXT
+	);
 
-	result, err := db.Exec(statement)
-	if err != nil {
-		// log.Fatal("Error her: ", err)
-		log.Fatal("Error here: ", err)
-	}
+		CREATE TABLE IF NOT EXISTS "blogs" (
+		"id"	INTEGER NOT NULL,
+		"title"	TEXT NOT NULL,
+		"content"	INTEGER NOT NULL,
+		PRIMARY KEY("id")
+	);
+	`
 
-	fmt.Println("Result: ", result)
+	db.Exec(statement)
+}
 
+func main() {
+	initDatabase()
+	router := mux.NewRouter()
 	dir := http.Dir("./static")
 	fs := http.FileServer(dir)
-	router.PathPrefix("/resources/").Handler(http.StripPrefix("/resources/", fs))
 
+	router.PathPrefix("/resources/").Handler(http.StripPrefix("/resources/", fs))
 	router.HandleFunc("/", routers.HandleHomeRouter).Methods("GET")
 	router.HandleFunc("/login", routers.HandleLoginRouter).Methods("GET")
 	router.HandleFunc("/detail_blog/{id}", routers.HandleDetaiBloglRouter).Methods("GET")
