@@ -7,7 +7,7 @@ import (
 )
 
 func RenderAboutPage(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("render about page")
+	fmt.Println("Render about page")
 
 	templ, err := template.ParseGlob("./src/views/*.html")
 

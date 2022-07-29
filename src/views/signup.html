@@ -44,6 +44,14 @@
 				</div>
 		</div>
 
+		<p>
+			{{ if .Announcement }}
+			True
+			Value of isAnnouce, it is {{.Announcement}}
+			{{else }}
+			False
+			{{end}}
+		</p>
 		{{template "footer"}}
 	</main>
 </body>
