@@ -13,7 +13,7 @@ func CheckUserExists(username_params string) bool {
 	var createAt string
 	var updateAt sql.NullString = sql.NullString{
 		String: "ahihi",
-		Valid:  true,
+		Valid:  false,
 	}
 
 	db, err := sql.Open("sqlite3", "test.db")
@@ -31,7 +31,7 @@ func CheckUserExists(username_params string) bool {
 	errScan := rows.Scan(&id, &username, &password, &createAt, &updateAt)
 
 	if errScan != nil {
-		fmt.Println("errorScan: ", errScan)
+		fmt.Println("err Scan: ", errScan)
 		return false
 	}
 

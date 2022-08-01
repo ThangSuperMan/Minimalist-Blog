@@ -9,7 +9,6 @@ import (
 )
 
 func RenderDetailPage(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("RenderDetailPage")
 	templ, err := template.ParseGlob("./src/views/*.html")
 
 	if err != nil {
@@ -21,7 +20,6 @@ func RenderDetailPage(w http.ResponseWriter, r *http.Request) {
 	blog := models.QueryABlog(id)
 
 	if blog.Title == "" && blog.Content == "" {
-		fmt.Println("empty")
 		templ.ExecuteTemplate(w, "detail_blog.html", nil)
 	} else {
 		templ.ExecuteTemplate(w, "detail_blog.html", blog)

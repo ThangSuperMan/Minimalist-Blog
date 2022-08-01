@@ -9,7 +9,9 @@ import (
 )
 
 type shipData struct {
-	Blogs []structs.Blog
+	Blogs    []structs.Blog
+	Username string
+	IsUser   bool
 }
 
 func RenderHomePage(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +24,9 @@ func RenderHomePage(w http.ResponseWriter, r *http.Request) {
 
 	if models.ReadAllBlogs() != nil {
 		ship := shipData{
-			Blogs: models.ReadAllBlogs(),
+			Blogs:    models.ReadAllBlogs(),
+			Username: "guest",
+			IsUser:   false,
 		}
 
 		templ.ExecuteTemplate(w, "index.html", ship)

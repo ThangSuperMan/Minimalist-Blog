@@ -20,6 +20,10 @@
 <body>
 	<main class="container">
 		{{template "header"}}
+		<p>
+			{{ .Username }}
+			{{ .IsUser}}
+		</p>
 		<section class="content">
 			<div class="wrapper">
 				<h2 class="content__lastest">
@@ -28,8 +32,7 @@
 				<div class="content-blogs">
 					{{range .Blogs }}
 					<a href="/detail_blog/{{ .Id }}" class="content-blogs__item">
-						<img
-							src="https://cdn.nextlint.com/user/59e8095b-0d60-4e2a-bf24-83566d10d5c0/J8QXrwOO9.webp">
+						<img src="https://cdn.nextlint.com/user/59e8095b-0d60-4e2a-bf24-83566d10d5c0/J8QXrwOO9.webp">
 						<div>
 							<input type="hidden" value="{{ .Id }}" />
 							<h3>{{ .Title }}</h3>

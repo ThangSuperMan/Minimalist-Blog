@@ -5,11 +5,10 @@ import (
 	"Blog/src/models"
 	"Blog/src/routers"
 	"database/sql"
-	"log"
-	"net/http"
-
 	"github.com/gorilla/mux"
 	_ "github.com/mattn/go-sqlite3"
+	"log"
+	"net/http"
 )
 
 func initDatabase() {
@@ -35,8 +34,7 @@ func initDatabase() {
 		"title"	TEXT NOT NULL,
 		"content"	INTEGER NOT NULL,
 		PRIMARY KEY("id")
-	);
-	`
+	);`
 
 	db.Exec(statement)
 }
@@ -44,6 +42,7 @@ func initDatabase() {
 func addRoutes(router *mux.Router) {
 	router.HandleFunc("/", routers.HandleHomeRouter).Methods("GET")
 	router.HandleFunc("/login", routers.HandleLoginRouter).Methods("GET")
+	router.HandleFunc("/login", controllers.LoginUser).Methods("POST")
 	router.HandleFunc("/detail_blog/{id}", routers.HandleDetaiBloglRouter).Methods("GET")
 	router.HandleFunc("/add_blog", routers.HandleAddBlogRouter).Methods("GET")
 	router.HandleFunc("/add_blog", models.HandleAddBlog).Methods("POST")
@@ -53,8 +52,8 @@ func addRoutes(router *mux.Router) {
 
 func main() {
 	initDatabase()
-
 	router := mux.NewRouter()
+
 	dir := http.Dir("./static")
 	fs := http.FileServer(dir)
 	router.PathPrefix("/resources/").Handler(http.StripPrefix("/resources/", fs))

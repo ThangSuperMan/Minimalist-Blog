@@ -8,11 +8,11 @@
 	<link rel="stylesheet" href="/resources/css/styles.css" />
 	<link rel="stylesheet" href="/resources/css/login.css" />
 	<link rel="stylesheet" href="/resources/css/add_blog.css" />
-
+	<link rel="stylesheet" href="/resources/css/signup.css" />
 
 	<!-- Font -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLlogD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<!-- Essential things -->
@@ -39,21 +39,48 @@
 					<label for="confirm_password">Nhập lại mật khầu</label>
 					<input type="password" name="confirm_password" id="confirm_password" required>
 				</div>
+				<div class="validate-password">
+				</div>
 				<div class="center">
 					<button class="form__button" type="submit">đăng ký</button>
 				</div>
 		</div>
 
-		<p>
-			{{ if .Announcement }}
-			True
-			Value of isAnnouce, it is {{.Announcement}}
-			{{else }}
-			False
+		<div class="signup">
+			{{ if eq .Announcement "signup_successfully" }}
+			<div class="signup-container">
+				<div class="signup__bg"></div>
+				<div class="signup__successfully">
+					<div class="signup-paragraph">
+						successfully signup your account
+					</div>
+					<a class="signup-btn__successfully " href="/login">Login now</a>
+				</div>
+			</div>
 			{{end}}
-		</p>
+			{{ if eq .Announcement "signup_unsuccessfully" }}
+			<div class="signup__wrapper">
+				<div class="signup__bg"></div>
+				<div class="signup__error">
+					<div class="signup-paragraph">
+						unsuccessfully signup your account, Cause
+						{{ .Message }}
+					</div>
+					<a class="signup-btn__error" href="/signup">Signup again!</a>
+				</div>
+			</div>
+			{{end}}
+			<!-- {{ if eq .Announcement "default" }} -->
+			<!-- <div class="signup__default>"> -->
+			<!-- 	default -->
+			<!-- </div> -->
+			<!-- {{end}} -->
+		</div>
+
 		{{template "footer"}}
 	</main>
+
+	<script type="text/javascript" src="/resources/js/signup.js"></script>
 </body>
 
 </html>

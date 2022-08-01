@@ -1,5 +1,7 @@
 package structs
 
+import "database/sql"
+
 type Blog struct {
 	Id      int
 	Title   string
@@ -8,8 +10,13 @@ type Blog struct {
 
 type User struct {
 	Id       int
-	username string
-	password string
-	createAt string
-	updateAt string
+	Username string
+	Password string
+	CreateAt string
+	UpdateAt sql.NullString
+}
+
+type NotificationStateSignup struct {
+	Announcement string
+	Message      string
 }
